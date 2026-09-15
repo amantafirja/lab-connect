@@ -87,7 +87,7 @@ func startHealthMonitor() {
 
 func InitDB() {
 	dbUser := config.GetEnv("DB_USER", "postgres")
-	dbPassword := config.GetEnv("DB_PASSWORD", "123")
+	dbPassword := config.MustGetEnv("DB_PASSWORD")
 	dbHost := config.GetEnv("DB_HOST", "localhost")
 	dbPort := config.GetEnv("DB_PORT", "5432")
 	dbName := config.GetEnv("DB_NAME", "lab_connect")

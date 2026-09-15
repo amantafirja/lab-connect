@@ -7,7 +7,7 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
-var jwtKey = []byte(config.GetEnv("JWT_SECRET", "secret_key"))
+var JWTKey = []byte(config.MustGetEnv("JWT_SECRET"))
 
 // GenerateJWT berfungsi untuk membuat token JWT
 func GenerateToken(username string) string {
@@ -23,7 +23,7 @@ func GenerateToken(username string) string {
 
 	//membuat token dengan klaim yang telah dibuat
 	//menggunakan algoritma HS256
-	token, _ := jwt.NewWithClaims(jwt.SigningMethodHS256, claims).SignedString(jwtKey)
+	token, _ := jwt.NewWithClaims(jwt.SigningMethodHS256, claims).SignedString(JWTKey)
 
 	return token
 }

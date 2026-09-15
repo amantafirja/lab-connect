@@ -3,6 +3,7 @@ package middlewares
 import (
 	"lab-connect/backend-api/config"
 	"lab-connect/backend-api/database"
+	"lab-connect/backend-api/helpers"
 	"lab-connect/backend-api/models"
 	"net/http"
 	"strings"
@@ -30,7 +31,7 @@ func AuthMiddleware() gin.HandlerFunc {
 		claims := &jwt.RegisteredClaims{}
 
 		token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
-			return jwtKey, nil
+			return helpers.JWTKey, nil
 		})
 
 		if err != nil || !token.Valid {

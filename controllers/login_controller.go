@@ -3,6 +3,7 @@ package controllers
 import (
 	"lab-connect/backend-api/config"
 	"lab-connect/backend-api/database"
+	"lab-connect/backend-api/helpers"
 	"lab-connect/backend-api/models"
 	"lab-connect/backend-api/structs"
 	"net/http"
@@ -116,7 +117,7 @@ func Login(c *gin.Context) {
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	tokenString, err := token.SignedString(jwtKey)
+	tokenString, err := token.SignedString(helpers.JWTKey)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate token"})
 		return
