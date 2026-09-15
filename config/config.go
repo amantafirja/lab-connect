@@ -23,14 +23,3 @@ func GetEnv(key string, defaultValue string) string {
 	}
 	return value
 }
-
-// MustGetEnv mengambil environment variable yang WAJIB diisi.
-// Jika tidak diset, aplikasi langsung dihentikan (fatal) alih-alih
-// diam-diam memakai nilai default yang tidak aman.
-func MustGetEnv(key string) string {
-	value, exists := os.LookupEnv(key)
-	if !exists || value == "" {
-		log.Fatalf("FATAL: required environment variable %s is not set. Application cannot start without it.", key)
-	}
-	return value
-}
